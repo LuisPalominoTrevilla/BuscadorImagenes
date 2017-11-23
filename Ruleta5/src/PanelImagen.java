@@ -72,9 +72,10 @@ public class PanelImagen extends JPanel{
                     PanelImagen.this.paintImage(pathToImage);
                 }else{                          // No se encontro la imagen
                     StackLinkedList<String> sll=new StackLinkedList<String>();
-                    PanelImagen.this.imgDatabase.add(PanelImagen.this.imgToSearch, "");
+//                    PanelImagen.this.imgDatabase.add(PanelImagen.this.imgToSearch, "");
                     sll=PanelImagen.this.imgDatabase.giveRoute(PanelImagen.this.imgToSearch,sll);
                     PanelImagen.this.paintImage(sll.pop());
+//                    PanelImagen.this.imgDatabase.remove(PanelImagen.this.imgToSearch);
                 }
             }
         });

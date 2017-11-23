@@ -44,6 +44,7 @@ public class AVLTree <K extends Comparable<K>, V>{
     	return giveRoute(key,this.root,sll);
     }
     private StackLinkedList<V> giveRoute(K key, TreeNode<K,V> node, StackLinkedList<V> sll){
+//    	System.out.println("nodo: " + node.value);
     	if(key == null){
             throw new NullPointerException();
         }
@@ -51,7 +52,8 @@ public class AVLTree <K extends Comparable<K>, V>{
             return null;
         }else{
         	TreeNode<K,V> nodetmp = this.searchNodeInRoute(key,node);
-        	if(nodetmp.value==""){
+//        	System.out.println(nodetmp.value);
+        	if(nodetmp==null){
         		return sll;
         	}
         	else{
