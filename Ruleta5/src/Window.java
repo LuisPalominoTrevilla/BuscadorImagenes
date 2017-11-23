@@ -4,12 +4,11 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 
 public class Window extends JFrame{
-    
+	//Creates the JFrame
     public Window(String dirName){
         super();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         PanelImagen PI = new PanelImagen(dirName);
-        
         this.add(PI);
         this.pack();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();

@@ -22,9 +22,12 @@ public class PanelImagen extends JPanel{
     private JButton btSelectImage, btSearchImage;
     private JFileChooser fc;
     private Integer imgToSearch;
+    private myCV cv;
+    private String[] files;
     
     public PanelImagen(String dirName){
         super();
+        this.cv=new myCV();
         this.setPreferredSize(new Dimension(800, 600));
         this.path = dirName;
         this.imgDatabase = new AVLTree<>();
@@ -68,7 +71,11 @@ public class PanelImagen extends JPanel{
                 if(pathToImage != null){        // Si se encontro la imagen
                     PanelImagen.this.paintImage(pathToImage);
                 }else{                          // No se encontro la imagen
-                    PanelImagen.this.paintImage("notfound.png");
+                    System.out.println("no se encontró la imagen");
+                    StackLinkedList<String> sll=new StackLinkedList<String>();
+                    PanelImagen.this.imgDatabase.add(PanelImagen.this.imgToSearch, "");
+                    sll=PanelImagen.this.imgDatabase.giveRoute(PanelImagen.this.imgToSearch,sll);
+                    PanelImagen.this.paintImage(sll.pop());
                 }
             }
         });
@@ -89,7 +96,7 @@ public class PanelImagen extends JPanel{
     }
     
     private void loadImages(){
-        
+    	
         String[] files = new File(this.path).list();
         
         for(String file:files){
@@ -103,16 +110,18 @@ public class PanelImagen extends JPanel{
      * computes hash code of image
      * @return returns the hash code of an image
      */
+    //New hash
     private int getHashCode(String imageFile){
-        myCV cv = new myCV();
-        BufferedImage img = cv.readImage(imageFile);
-        img = cv.resizeImage(cv.convertToGrayScale(img, BufferedImage.TYPE_BYTE_GRAY), 20, 20);
-        int sum = 0;
-        for(int y = 0; y < img.getHeight(); y++){
-            for(int x = 0; x < img.getWidth(); x++){
-                sum += cv.getGrayPixel(img, x, y);
-            }
+    	myCV cv=new myCV();
+    	BufferedImage img=myCV.readImage(imageFile);
+    	img=myCV.resizeImage(myCV.convertToGrayScale(img, BufferedImage.TYPE_BYTE_GRAY), 30, 30);
+    	int sum=0;
+        for(int y=0;y<img.getHeight();y++){
+        	for(int x=0;x<img.getWidth();x++){
+        		sum += (2*cv.getGrayPixel(img, x, y));
+        	}
         }
+        System.out.println("la suma es: "+sum);
         return sum;
     }
 }

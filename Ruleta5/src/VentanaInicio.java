@@ -1,4 +1,6 @@
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,14 +16,14 @@ public class VentanaInicio extends JFrame{
     private JButton btPathChooser, start;
     private String dirName;
     private JFileChooser fc;
-    private JLabel info;
-    
+    private JLabel info, jlChooser;
+    //Creates the first JFrame, the one that offers you to choose the folder in which the images are located
     public VentanaInicio(){
         super();
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(350, 200));
-        
+
         this.btPathChooser = new JButton("Abrir");
         this.btPathChooser.addActionListener(new ActionListener() {
             
@@ -49,8 +51,9 @@ public class VentanaInicio extends JFrame{
                  VentanaInicio.this.dispose();
             }
         });
-        
-        panel.add(new JLabel("Elija un directorio de Imagenes"));
+        this.jlChooser=new JLabel("Elija un directorio de Imagenes");
+        this.jlChooser.setFont(new Font("Times New Roman", Font.BOLD, 25));
+        panel.add(this.jlChooser);
         panel.add(this.btPathChooser);
         panel.add(this.start);
         panel.add(this.info);
