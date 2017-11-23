@@ -71,7 +71,6 @@ public class PanelImagen extends JPanel{
                 if(pathToImage != null){        // Si se encontro la imagen
                     PanelImagen.this.paintImage(pathToImage);
                 }else{                          // No se encontro la imagen
-                    System.out.println("no se encontró la imagen");
                     StackLinkedList<String> sll=new StackLinkedList<String>();
                     PanelImagen.this.imgDatabase.add(PanelImagen.this.imgToSearch, "");
                     sll=PanelImagen.this.imgDatabase.giveRoute(PanelImagen.this.imgToSearch,sll);
@@ -121,7 +120,7 @@ public class PanelImagen extends JPanel{
         		sum += (2*cv.getGrayPixel(img, x, y));
         	}
         }
-        System.out.println("la suma es: "+sum);
+//        System.out.println("la suma es: "+sum);
         return sum;
     }
 }

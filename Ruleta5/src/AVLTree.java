@@ -50,15 +50,12 @@ public class AVLTree <K extends Comparable<K>, V>{
         if(this.isEmpty()){
             return null;
         }else{
-//        	System.out.println("right: " + node.rightChild.value);
-//        	System.out.println("left: " + node.leftChild);
         	TreeNode<K,V> nodetmp = this.searchNodeInRoute(key,node);
         	if(nodetmp.value==""){
         		return sll;
         	}
         	else{
 	        	sll.push(node.value);
-	        	System.out.println("Nodetmp value is: " + nodetmp.value);
 	        	this.giveRoute(key, nodetmp,sll);
 	        	return sll;
         	}
