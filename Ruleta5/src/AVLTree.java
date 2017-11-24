@@ -39,48 +39,7 @@ public class AVLTree <K extends Comparable<K>, V>{
             this.recursiveAdd(this.root, newNode);
         }
     }
-//------------------------------------------------------------------------//    
-    public StackLinkedList<V> giveRoute(K key, StackLinkedList<V> sll){
-    	return giveRoute(key,this.root,sll);
-    }
-    private StackLinkedList<V> giveRoute(K key, TreeNode<K,V> node, StackLinkedList<V> sll){
-//    	System.out.println("nodo: " + node.value);
-    	if(key == null){
-            throw new NullPointerException();
-        }
-        if(this.isEmpty()){
-            return null;
-        }else{
-        	TreeNode<K,V> nodetmp = this.searchNodeInRoute(key,node);
-//        	System.out.println(nodetmp.value);
-        	if(nodetmp==null){
-        		return sll;
-        	}
-        	else{
-	        	sll.push(node.value);
-	        	this.giveRoute(key, nodetmp,sll);
-	        	return sll;
-        	}
-        }
-    }
-    private TreeNode<K, V> searchNodeInRoute(K key, TreeNode<K, V> node){
-        if(node == null){
-            return null;
-        }
-        int cmp = key.compareTo(node.key);
-        if(cmp == 0){
-            return node;
-        }
-        if(cmp > 0){
-            return node.rightChild;
-        }else{
-            return node.leftChild;
-        }
-    }
-    
-// --------------------------------------------------------------------------------//   
-    
-    
+
     private void recursiveAdd(TreeNode<K, V> currentNode, TreeNode<K, V> addNode){
         int cmp = addNode.key.compareTo(currentNode.key);
         if(cmp == 0){   // Si la llava es igual solo cambio el valor asociado
@@ -523,5 +482,19 @@ public class AVLTree <K extends Comparable<K>, V>{
         public String toString(){
             return "[" + key + "-" + value + "]";
         }
+    }
+    
+    public static void main(String[] args){
+        AVLTree<Integer, Integer> bs = new AVLTree<>();
+        bs.add(2, 2);
+        bs.add(1, 1);
+        bs.add(4, 4);
+        bs.add(5, 5);
+        bs.add(9, 9);
+        bs.add(3, 3);
+        bs.add(6, 6);
+        bs.add(7, 7);
+        bs.remove(4);
+        System.out.println(bs.porNiveles());
     }
 }
